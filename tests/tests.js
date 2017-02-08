@@ -5,6 +5,7 @@ var $ = require('jquery');
 var Post = require('../app/scripts/models.js').Post;
 var PostView = require('../app/scripts/views.js').PostView;
 
+// var NewPost = require('../app/scripts/createpost.js').NewPost;
 // ##############################################
 // Model Tests
 // ##############################################
@@ -53,5 +54,43 @@ describe('PostView', function(){
     });
 
   });
-  
+
+});
+
+// ##############################################
+// Create Post Form
+// ##############################################
+
+describe("create post form", function(){
+
+  it('should trigger a create:post event on the document with the title and body', function(done){
+    $(document).on('create:post', function(event, post){
+
+      expect(post).to.have.property('title');
+      expect(post).to.have.property('body');
+      done();
+    });
+
+    $('.title').val("Title");
+    $('.body').val("Body");
+    $('.btn-submit').click();
+
+  })
+});
+
+describe("have post form", function(){
+
+  it('should have post that soaks up data', function(done){
+    $(document).on('create:post', function(event, post){
+
+      expect(post.title).to.be.same($('.title').val());
+      //expect(post).to.have.property('body');
+      done();
+    });
+
+    // $('.title').val("Title");
+    // $('.body').val("Body");
+    // $('.btn-submit').click();
+
+  })
 });
