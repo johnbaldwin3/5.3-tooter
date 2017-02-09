@@ -9,18 +9,12 @@ $(function(){
   //
   $(document).on('posts:fetch', function(event, posts){
     view.showPosts(posts);
-
   });
 
-
-    models.Post.fetch();
-
-
-
-
+  models.Post.fetch();
 
   $(document).on('create:post', function(event, data){
-      models.Post.create(data);
+    models.Post.create(data);
   });
 
-  });
+});

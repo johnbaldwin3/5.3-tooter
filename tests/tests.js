@@ -29,7 +29,6 @@ describe('Post', function(){
       })
     });
   });
-
 });
 
 // ##############################################
@@ -47,6 +46,7 @@ describe('PostView', function(){
   describe('showPosts', function(){
 
     it('should take a post array and list them', function(){
+
       view.showPosts(posts);
       expect($('.posts li').length).to.equal(1);
       expect($('.posts li').first().find('h1').text()).to.equal('Cool');
@@ -58,43 +58,30 @@ describe('PostView', function(){
 });
 
 // ##############################################
-// Create Post Form
+// Create Post Test ^^^(need to fig. out how to put in above)^
 // ##############################################
 
 describe("create post form", function(){
 
   it('should trigger a create:post event on the document with the title and body', function(done){
-    $(document).on('create:post', function(event, post){
+    $(document).on('create:post', function(event, userPost){
 
-      expect(post).to.have.property('title');
-      expect(post).to.have.property('body');
+      expect(userPost).to.have.property('title');
+      expect(userPost).to.have.property('body');
 
-      expect(post.title).to.equal('Title');
-      expect(post.body).to.equal('Body');
-      
+      expect(userPost.title).to.equal('Title');
+      expect(userPost.body).to.equal('Body');
+
+      //signals that we are done running our specs / unit test
       done();
     });
 
     $('.title').val("Title");
     $('.body').val("Body");
+    //probably stick with original
+    //and use submit event on post form
     $('.btn-submit').click();
 
   })
-});
 
-// describe("have post form", function(){
-//
-//   it('should have post that soaks up data', function(done){
-//     $(document).on('create:post', function(event, post){
-//
-//       expect(post.title).to.be.same($('.title').val());
-//       //expect(post).to.have.property('body');
-//       done();
-//     });
-//
-//     // $('.title').val("Title");
-//     // $('.body').val("Body");
-//     // $('.btn-submit').click();
-//
-//   })
-// });
+});

@@ -7,6 +7,9 @@ function Post(){
 
 }
 
+//needed output from method to make it testable
+//that's why post fetch went into a promise variable
+
 Post.fetch = function(){
   var promise = $.ajax('http://tiny-lasagna-server.herokuapp.com/collections/posts');
 
@@ -25,8 +28,8 @@ Post.create = function(data) {
      data: data
     }).done(function(){
      Post.fetch();
-   });
-     };
+  });
+};
 
     //  makePost.then(function(posts){
     //    $(document).trigger('posts:fetch', [posts]);

@@ -7,14 +7,13 @@ var templateCreate = require('../templates/application.hbs');
 
 function PostView(){
   $('body').append('<ul class="posts">');
-
   $('body').append(templateCreate());
 
   $('.form-post').on('submit', function(event){
     event.preventDefault();
     $(document).trigger('create:post', [{
-      title:$('.title').val()
-     ,body:$('.body').val()
+      title: $('.title').val(),
+      body: $('.body').val()
      }]);
   });
 }
